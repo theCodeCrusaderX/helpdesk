@@ -29,6 +29,7 @@ import {
 } from "@/store/user/ticket-slice";
 import UpdateTicketStatus from "./UpdateTicketStatus";
 
+
 function AgentDashboard() {
   const dispatch = useDispatch();
 
@@ -55,8 +56,10 @@ function AgentDashboard() {
     dispatch(getTicketDetailByTicketId({ ticketId: id }));
   }
 
+  const [isUpdate,setIsUpdate] = useState(true)
+
   useEffect(() => {
-    if (ticketDetail !== null) setOpenUpdateTicketDialog(true);
+    if (ticketDetail !== null && isUpdate) setOpenUpdateTicketDialog(true);
   }, [ticketDetail]);
 
   useEffect(() => {
@@ -114,12 +117,14 @@ function AgentDashboard() {
                       <Button
                         onClick={() =>{
                           handleFetchNotes(ticketItem?._id)
+                          setIsUpdate(false)
+                          handleFetchTicketDetail(ticketItem?._id)
                         }}
                         
                       >
                         reply
                       </Button>
-                      <AgentTicketConversation noteList={noteList} />
+                      <AgentTicketConversation noteList={noteList} ticketDetail={ticketDetail} />
                       
                     </Dialog>
                   </TableCell>

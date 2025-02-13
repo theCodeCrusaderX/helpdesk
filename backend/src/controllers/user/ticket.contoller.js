@@ -139,7 +139,10 @@ const getNotesForUser = async (req, res) => {
     }
 
     // Find all tickets that have notes from the specified sender
-    const ticket = await Ticket.findById(ticketItemId);
+    const ticket = await Ticket.findById(ticketItemId).populate({
+      path: 'note.sender',
+      select: 'name role', // Select only the name and role fields from the User model
+    });    
 
     if (!ticket) {
       return res.status(404).json({

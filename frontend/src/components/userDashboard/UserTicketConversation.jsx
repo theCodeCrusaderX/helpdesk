@@ -14,10 +14,17 @@ function UserTicketConversation({noteList}) {
           {noteList.map((note, index) => (
             <li
               key={index}
-              className="p-3 bg-gray-100 rounded-lg shadow-sm border border-gray-300"
+              className={`p-3 rounded-lg shadow-sm border ${
+                note.sender.role === "agent"
+                  ? "bg-blue-100 border-blue-300"
+                  : "bg-gray-100 border-gray-300"
+              }`}
             >
               <p className="text-sm text-gray-700">
-                <span className="font-semibold">#{index + 1}:</span> {note.text}
+                <span className="font-semibold">
+                  {note.sender.role === "agent" ? "Agent" : "User"} :
+                </span>{" "}
+                {note.text}
               </p>
               <span className="text-xs text-gray-500 block mt-1">
                 📅 {note.timestamp.split("T")[0]}
