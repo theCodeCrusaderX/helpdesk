@@ -20,6 +20,7 @@ export const registerUser = createAsyncThunk(
         withCredentials: true,
       }
     );
+    console.log("response form backend :: ", response.data);
 
     return response.data;
   }
@@ -36,6 +37,7 @@ export const loginUser = createAsyncThunk(
         withCredentials: true,
       }
     );
+    console.log("response form backend :: ", response.data);
 
     return response.data;
   }
@@ -65,7 +67,7 @@ export const checkAuth = createAsyncThunk("/auth/checkAuth", async () => {
       },
     }
   );
-  console.log("response form backend for checkAuth:: ", response.data);
+  console.log("response form backend for checkauth:: ", response.data);
 
   return response.data;
 });
@@ -102,6 +104,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         (state.isLoading = false),
           (state.isAuthenticated = action.payload.success),
+          console.log('111',action.payload);
           
           (state.user = action.payload.success && action.payload.user);
       })
@@ -114,9 +117,9 @@ const authSlice = createSlice({
           (state.user = null);
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
-        (state.isLoading = false),
-          (state.isAuthenticated = action.payload.success),
-          (state.user = action.payload.success && action.payload.data);
+        state.isLoading = false;
+        state.isAuthenticated = action.payload.success;
+        state.user = action.payload.success ? action.payload.data : {};
       })
       .addCase(logoutUser.fulfilled, (state) => {
         (state.isLoading = false),

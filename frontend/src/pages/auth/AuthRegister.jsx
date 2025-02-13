@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "@/store/auth-slice";
 import { useToast } from "@/hooks/use-toast";

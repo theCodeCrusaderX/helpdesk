@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 
-function UserDashboardLayout() {
+function TicketListLayout() {
   return (
     <div className="flex flex-col bg-white overflow-hidden">
       {/* common header */}
@@ -14,4 +14,4 @@ function UserDashboardLayout() {
   );
 }
 
-export default UserDashboardLayout;
+export default TicketListLayout;

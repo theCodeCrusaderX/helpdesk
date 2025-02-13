@@ -28,6 +28,14 @@ app.use(cookieParser())
 import userRouter from "./routes/user.route.js"
 app.use("/api/v1/users",userRouter)
 
+//api for user ticket
+import ticketRouter from "./routes/user/ticket.route.js"
+app.use("/api/v1/ticket",ticketRouter)
+
+//api for agent ticket
+import agentTicketRouter from "./routes/agent/ticket.route.js"
+app.use("/api/v1/agent/ticket",agentTicketRouter)
+
 
 
 export {app}

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";  //outlet means children of layout.jsx 
+import { Outlet } from "react-router-dom";  //outlet means children of layout.jsx 
 
 
 function AuthLayout() {

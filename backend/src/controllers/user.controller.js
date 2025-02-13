@@ -163,8 +163,8 @@ const logoutUser = async (req, res) => {
 
 const checkAuth = async (req,res) => {
   try {
-    return res.status(200).json({
-      sucess : true,
+     res.status(200).json({
+      success : true,
       data : req.user
     })
   } catch (e) {

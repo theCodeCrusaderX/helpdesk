@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/AuthLayout";
 import AuthLogin from "./pages/auth/AuthLogin";
@@ -9,6 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import UserDashboardLayout from "./components/userDashboard/UserDashboardLayout";
 import Dashboard from "./pages/user/Dashboard";
+import TicketListLayout from "./components/userDashboard/TicketListLayout";
+import ViewTickets from "./pages/user/ViewTickets";
+import AgentDashboardLayout from "./components/agentDashboard/AgentDashboardLayout";
+import AgentDashboard from "./pages/agent/AgentDashboard";
+
 
 export default function App() {
   const dispatch = useDispatch();
@@ -17,12 +22,14 @@ export default function App() {
     (state) => state.auth
   );
 
-  console.log(user,isAuthenticated);
-  
-
   useEffect(() => {
-    dispatch(checkAuth()).then((res) => console.log('111',res))
+    dispatch(checkAuth())
   }, [dispatch]);
+
+
+  if (isLoading) {
+    return <>loading</>;
+  }
 
   return (
     <Routes>
@@ -44,7 +51,6 @@ export default function App() {
         <Route path="Register" element={<AuthRegister />} />
       </Route>
 
-
       {/* user-view  */}
       <Route
         path="/user"
@@ -55,7 +61,30 @@ export default function App() {
         }
       >
         <Route path="dashboard" element={<Dashboard />}></Route>
+      </Route>
 
+      {/* USER-LIST-TICKETS  */}
+      <Route
+        path="/view"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <TicketListLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="tickets" element={<ViewTickets />}></Route>
+      </Route>
+
+      {/* agent  */}
+      <Route
+        path="/agent"
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AgentDashboardLayout />
+          </CheckAuth>
+        }
+      >
+        <Route path="dashboard" element={<AgentDashboard />}></Route>
       </Route>
     </Routes>
   );
