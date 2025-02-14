@@ -6,7 +6,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: "https://helpdesk-frontend-eight.vercel.ap,
+    origin: "https://helpdesk-frontend-eight.vercel.app",
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
