@@ -14,7 +14,7 @@ export const registerAgent = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "https://helpdesk-backend-9a32.onrender.com/api/v1/agent/register",
+      "https://helpdesk-backend-vple.onrender.com/api/v1/agent/register",
       data,
       {
         withCredentials: true,
@@ -31,7 +31,7 @@ export const loginAgent = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "https://helpdesk-backend-9a32.onrender.com/api/v1/agent/login",
+      "https://helpdesk-backend-vple.onrender.com/api/v1/agent/login",
       data,
       {
         withCredentials: true,
@@ -45,7 +45,7 @@ export const loginAgent = createAsyncThunk(
 
 export const logoutAgent = createAsyncThunk("/auth/logoutAgent", async () => {
   const response = await axios.post(
-    "https://helpdesk-backend-9a32.onrender.com/api/v1/agent/logout",
+    "https://helpdesk-backend-vple.onrender.com/api/v1/agent/logout",
     {},
     {
       withCredentials: true,
@@ -58,7 +58,7 @@ export const logoutAgent = createAsyncThunk("/auth/logoutAgent", async () => {
 
 export const checkAuth = createAsyncThunk("/auth/checkAuth", async () => {
   const response = await axios.get(
-    "https://helpdesk-backend-9a32.onrender.com/api/v1/agent/check-auth",
+    "https://helpdesk-backend-vple.onrender.com/api/v1/agent/check-auth",
     {
       withCredentials: true,
       headers: {

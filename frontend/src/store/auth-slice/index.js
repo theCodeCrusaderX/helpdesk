@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "https://helpdesk-backend-9a32.onrender.com/api/v1/users/register",
+      "https://helpdesk-backend-vple.onrender.com/api/v1/users/register",
       data,
       {
         withCredentials: true,
@@ -28,24 +28,30 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "/auth/login",
-
   async (data) => {
     const response = await axios.post(
-      "https://helpdesk-backend-9a32.onrender.com/api/v1/users/login",
+      "https://helpdesk-backend-vple.onrender.com/api/v1/users/login",
       data,
       {
         withCredentials: true,
       }
     );
-    console.log("response form backend :: ", response.data);
+
+    console.log("response from backend :: ", response.data);
+
+    // Save accessToken in localStorage
+    if (response.data.accessToken) {
+      localStorage.setItem("accessToken", response.data.accessToken);
+    }
 
     return response.data;
   }
 );
 
+
 export const logoutUser = createAsyncThunk("/auth/logoutUser", async () => {
   const response = await axios.post(
-    "https://helpdesk-backend-9a32.onrender.com/api/v1/users/logout",
+    "https://helpdesk-backend-vple.onrender.com/api/v1/users/logout",
     {},
     {
       withCredentials: true,
@@ -58,7 +64,7 @@ export const logoutUser = createAsyncThunk("/auth/logoutUser", async () => {
 
 export const checkAuth = createAsyncThunk("/auth/checkAuth", async () => {
   const response = await axios.get(
-    "https://helpdesk-backend-9a32.onrender.com/api/v1/users/check-auth",
+    "https://helpdesk-backend-vple.onrender.com/api/v1/users/check-auth",
     {
       withCredentials: true,
       headers: {
