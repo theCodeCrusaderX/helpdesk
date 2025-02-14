@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "http://localhost:8000/api/v1/users/register",
+      "https://helpdesk-backend-9a32.onrender.com/api/v1/users/register",
       data,
       {
         withCredentials: true,
@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "http://localhost:8000/api/v1/users/login",
+      "https://helpdesk-backend-9a32.onrender.com/api/v1/users/login",
       data,
       {
         withCredentials: true,
@@ -45,7 +45,7 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk("/auth/logoutUser", async () => {
   const response = await axios.post(
-    "http://localhost:8000/api/v1/users/logout",
+    "https://helpdesk-backend-9a32.onrender.com/api/v1/users/logout",
     {},
     {
       withCredentials: true,
@@ -58,7 +58,7 @@ export const logoutUser = createAsyncThunk("/auth/logoutUser", async () => {
 
 export const checkAuth = createAsyncThunk("/auth/checkAuth", async () => {
   const response = await axios.get(
-    "http://localhost:8000/api/v1/users/check-auth",
+    "https://helpdesk-backend-9a32.onrender.com/api/v1/users/check-auth",
     {
       withCredentials: true,
       headers: {
