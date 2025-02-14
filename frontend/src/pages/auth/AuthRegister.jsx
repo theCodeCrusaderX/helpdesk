@@ -55,6 +55,8 @@ function AuthRegister() {
           <Input type="text" placeholder="Enter name" {...register("name")} />
           <Label>Enter your email</Label>
           <Input type="text" placeholder="Enter email" {...register("email")} />
+          <Label>Enter role(ignore if you are not agent or type user)</Label>
+          <Input type="text" placeholder="Enter role" {...register("role")} />
           <Label>Enter your password</Label>
           <Input
             type="password"
@@ -70,3 +72,5 @@ function AuthRegister() {
 }
 
 export default AuthRegister;
+
+

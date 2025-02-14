@@ -9,7 +9,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
     const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
-    await user.save({ validateBeforeSave: false }); 
+    await user.save({ validateBeforeSave: false });
 
     return { accessToken, refreshToken };
   } catch (error) {
@@ -23,7 +23,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     if ([name, email, password].some((field) => field?.trim() === "")) {
       return res.json({
@@ -41,7 +41,13 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const createUser = await User.create({ name, email, password });
+    let createUser;
+
+    if (role) {
+       createUser = await User.create({ name, email, password, role });
+    } else {
+       createUser = await User.create({ name, email, password });
+    }
 
     if (!createUser) {
       return res.json({
@@ -62,7 +68,6 @@ const registerUser = async (req, res) => {
     });
   }
 };
-
 
 const loginUser = async (req, res) => {
   try {
@@ -93,9 +98,13 @@ const loginUser = async (req, res) => {
       });
     }
 
-    const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id);
+    const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
+      user._id
+    );
 
-    const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
+    const loggedInUser = await User.findById(user._id).select(
+      "-password -refreshToken"
+    );
 
     const options = {
       httpOnly: true,
@@ -125,7 +134,6 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-  
     await User.findByIdAndUpdate(
       req.user._id,
       {
@@ -138,12 +146,12 @@ const logoutUser = async (req, res) => {
         new: true,
       }
     );
-  
+
     const options = {
       httpOnly: true,
       secure: true,
     };
-  
+
     return res
       .status(200)
       .clearCookie("accessToken", options)
@@ -161,15 +169,15 @@ const logoutUser = async (req, res) => {
   }
 };
 
-const checkAuth = async (req,res) => {
+const checkAuth = async (req, res) => {
   try {
-     res.status(200).json({
-      success : true,
-      data : req.user
-    })
+    res.status(200).json({
+      success: true,
+      data: req.user,
+    });
   } catch (e) {
     console.log(e);
   }
-}
+};
 
 export { registerUser, loginUser, logoutUser, checkAuth };
