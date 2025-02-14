@@ -39,11 +39,6 @@ export const loginUser = createAsyncThunk(
 
     console.log("response from backend :: ", response.data);
 
-    // Save accessToken in localStorage
-    if (response.data.accessToken) {
-      localStorage.setItem("accessToken", response.data.accessToken);
-    }
-
     return response.data;
   }
 );
