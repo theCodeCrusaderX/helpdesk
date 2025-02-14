@@ -13,7 +13,7 @@ export const getListOfTicketsForAllUsers = createAsyncThunk(
 
   async () => {
     const response = await axios.get(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/agent/ticket/get`,
+      `http://localhost:8000/api/v1/agent/ticket/get`,
       {
         withCredentials: true,
       }
@@ -31,7 +31,7 @@ export const updateTicketStatus = createAsyncThunk(
     console.log("2", id);
 
     const response = await axios.put(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/agent/ticket/update/${id}`,
+      `http://localhost:8000/api/v1/agent/ticket/update/${id}`,
       { status }
     );
 

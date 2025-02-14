@@ -14,7 +14,7 @@ export const createTicket = createAsyncThunk(
 
   async (data) => {
     const response = await axios.post(
-      "https://helpdesk-backend-9a32.onrender.com/api/v1/ticket/create",
+      "http://localhost:8000/api/v1/ticket/create",
       data,
       {
         withCredentials: true,
@@ -31,7 +31,7 @@ export const getListOfTickets = createAsyncThunk(
 
   async ({userId}) => {
     const response = await axios.get(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/ticket/get/${userId}`,
+      `http://localhost:8000/api/v1/ticket/get/${userId}`,
       {
         withCredentials: true,
         
@@ -48,7 +48,7 @@ export const addNote = createAsyncThunk(
 
   async ({ticketId,messageData}) => {
     const response = await axios.put(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/ticket/addNote/${ticketId}`,
+      `http://localhost:8000/api/v1/ticket/addNote/${ticketId}`,
       messageData,
       {
         withCredentials: true,
@@ -65,7 +65,7 @@ export const getListOfNotes = createAsyncThunk(
 
   async ({ticketItemId}) => {
     const response = await axios.get(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/ticket/getNote/${ticketItemId}`,
+      `http://localhost:8000/api/v1/ticket/getNote/${ticketItemId}`,
       {
         withCredentials: true,
         
@@ -82,7 +82,7 @@ export const getTicketDetailByTicketId = createAsyncThunk(
 
   async ({ticketId}) => {
     const response = await axios.get(
-      `https://helpdesk-backend-9a32.onrender.com/api/v1/ticket/getTicketDetail/${ticketId}`,
+      `http://localhost:8000/api/v1/ticket/getTicketDetail/${ticketId}`,
       {
         withCredentials: true,
         
