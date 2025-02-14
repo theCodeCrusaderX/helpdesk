@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
-import UserCreateTicket from "@/components/userDashboard/userCreateTicket";
+import UserCreateTicket from "@/components/userDashboard/UserCreateTicket";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
